@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Personal Portfolio
 
 ### [Live Site](https://jsmasterypro.com)
@@ -15,3 +16,6 @@ Setup:
 - run ```npm i && npm start```
 
 ## Launch your development career with project-based coaching - https://www.jsmastery.pro
+=======
+Meu portfólio
+>>>>>>> 8e3d0151caa56843cf30defd395f00ee1e95ab55
