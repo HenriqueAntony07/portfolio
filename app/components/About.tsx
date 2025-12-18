@@ -7,21 +7,21 @@ import "./About.css";
 /* Nested card content */
 const highlights = [
   {
-    title: "Scalability mindset",
+    title: "Mentalidade de escalabilidade",
     description:
-      "From database storage to reusable front-end components, I build foundations that scale with the founder's ambitions.",
+      "Desde o armazenamento de banco de dados até componentes de front-end reutilizáveis, construo bases que se adaptam às ambições do fundador.",
     Icon: ChartNoAxesCombined,
   },
   {
-    title: "10x Your web presence",
+    title: "Multiplique por 10 a sua presença online",
     description:
-      "From semantic UI to topic-cluster blogs, I focus on accessibility and SEO that outperforms your competitors.",
+      "Desde interfaces de usuário semânticas até blogs organizados por tópicos, meu foco é em acessibilidade e SEO que superam seus concorrentes.",
     Icon: SearchCheck,
   },
   {
-    title: "Strategic iterations",
+    title: "Interações estratégicas",
     description:
-      "Whether it's a simple button-color change, or a psychology-driven feature to boost conversions, I optimize with intention.",
+      "Seja uma simples mudança na cor de um botão ou um recurso baseado em psicologia para aumentar as conversões, eu otimizo com intenção.",
     Icon: Sparkles,
   },
 ];
@@ -64,16 +64,16 @@ export const About = () => {
           <header className="flex flex-col items-center gap-4">
             <span className="about-chip inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-muted-foreground">
               <span aria-hidden className="about-chip__dot" />
-              About Me
+              Sobre mim
             </span>
             <h2
               id="about-heading"
               className="text-balance text-3xl font-semibold tracking-tight sm:text-5xl"
             >
-              Shipping immersive digital experiences to users.
+              Oferecer experiências digitais imersivas aos usuários.
             </h2>
             <p className="max-w-3xl text-balance text-base text-muted-foreground sm:text-lg">
-              I design and ship React/Next.js products that are blazing fast, rank well in search, and are intuitive to use.
+              Crio e desenvolvo produtos React/Next.js que são extremamente rápidos, têm bom posicionamento nos resultados de busca e são intuitivos de usar.
             </p>
           </header>
 

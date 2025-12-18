@@ -12,15 +12,15 @@ const geist = Geist({
 
 // Metadata for SEO
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chad-probert-portfolio.vercel.app"),
+  metadataBase: new URL("https://www.henriqueantony.com.br/"),
   title: {
-    default: "Chad Probert | Web Developer Portfolio",
-    template: "%s | Chad Probert",
+    default: "Henrique Antony | Web Developer Portfolio",
+    template: "%s | Henrique Antony",
   },
   description:
-    "Chad Probert is a web developer based in South Africa specialising in performant, SEO-friendly React and Next.js builds. Explore selected projects, skills, and contact details.",
+    "Henrique Antony é um desenvolvedor web baseado na África do Sul especializando-se em builds performantes e amigáveis ao SEO com React e Next.js. Explore projetos selecionados, habilidades e detalhes de contato.",
   keywords: [
-    "Chad Probert",
+    "Henrique Antony",
     "web developer",
     "Next.js developer",
     "React developer",
@@ -28,27 +28,27 @@ export const metadata: Metadata = {
     "South Africa developer",
     "portfolio",
   ],
-  authors: [{ name: "Chad Probert" }],
-  creator: "Chad Probert",
-  publisher: "Chad Probert",
+  authors: [{ name: "Henrique Antony" }],
+  creator: "Henrique Antony",
+  publisher: "Henrique Antony",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Chad Probert | Web Developer Portfolio",
+    title: "Henrique Antony | Web Developer Portfolio",
     description:
-      "Explore Chad Probert's selected work, technical skills, and contact details for collaboration on performant web experiences.",
-    url: "https://chad-probert-portfolio.vercel.app",
-    siteName: "Chad Probert Portfolio",
-    locale: "en_US",
+      "Explore Henrique Antony's selected work, technical skills, and contact details for collaboration on performant web experiences.",
+    url: "https://www.henriqueantony.com.br/",
+    siteName: "Henrique Antony Portfolio",
+    locale: "pt_BR",
     type: "website",
     images: [{ url: "/og-image-1200x630.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chad Probert | Web Developer Portfolio",
+    title: "Henrique Antony | Web Developer Portfolio",
     description:
       "A frontend developer from South Africa building fast, accessible, SEO-ready React and Next.js products.",
     images: ["/og-image-1200x600.jpg"],
-    creator: "@ChadProbert",
+    creator: "@HenriqueAntony",
   },
   robots: {
     index: true,

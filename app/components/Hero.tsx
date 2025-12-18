@@ -15,7 +15,7 @@ export const Hero = () => {
             <span className="hero-status inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-muted-foreground">
               <span aria-hidden="true" className="status-indicator h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="inline-flex items-center gap-1">
-                Available for new projects
+                Disponível para novos projetos
               </span>
             </span>
 
@@ -24,7 +24,7 @@ export const Hero = () => {
                 id="home-heading"
                 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl lg:text-7xl"
               >
-                Chad Probert
+                Henrique Antony
               </h1>
               <p className="text-balance text-xl text-muted-foreground sm:text-2xl">
                 Web Developer
@@ -37,7 +37,7 @@ export const Hero = () => {
                 className="call-to-action inline-flex items-center gap-2 rounded-2xl border px-6 py-3 text-base font-medium transition-colors duration-300 hover:bg-foreground/5"
               >
                 <PhoneOutgoing className="mr-1 h-5 w-5" strokeWidth={2} />
-                Get in Touch
+                Entre em contato
               </a>
             </div>
           </header>

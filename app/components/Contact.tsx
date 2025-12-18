@@ -7,11 +7,11 @@ import { Mail, ArrowUpRight } from "lucide-react";
 const CONTACT_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact Chad Probert",
+  name: "Contato Henrique Antony",
   mainEntity: {
     "@type": "Person",
-    name: "Chad Probert",
-    email: "mailto:chadcprobert@gmail.com",
+    name: "Henrique Antony",
+    email: "mailto:henriqueantonydev@gmail.com",
     sameAs: [
       "https://www.linkedin.com/in/chad-probert-6421b321b/",
       "https://github.com/ChadProbert",
@@ -94,10 +94,10 @@ export const Contact = () => {
     <section id="contact" className="mb-24">
       <div className="mx-auto max-w-4xl lg:max-w-5xl px-4 sm:px-6">
         <h2 className="text-3xl sm:text-5xl font-bold tracking-wide text-center mb-6">
-          Get in Touch
+          Entre em contato
         </h2>
         <p className="text-center text-lg sm:text-3xl mb-6">
-          Let&apos;s build impactful digital experiences.
+          Vamos construir experiências digitais impactantes.
         </p>
 
         <div className="mt-10 rounded-2xl border p-6 sm:p-16 bg-card shadow-lg">

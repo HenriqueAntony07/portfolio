@@ -5,7 +5,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import "./Projects.css";
 import Image from "next/image";
 
-type Project = {
+type Projetos = {
   title: string;
   description: string;
   demoUrl?: string;
@@ -15,7 +15,7 @@ type Project = {
   previewAlt: string;
 };
 
-const projects: Project[] = [
+const projects: Projetos[] = [
   {
     title: "Celerity — New Tab Page",
     description:
@@ -24,7 +24,7 @@ const projects: Project[] = [
     repoUrl: "https://github.com/ChadProbert/celerity",
     previewSide: "right",
     previewImage: "/project-images/Celerity.png",
-    previewAlt: "Screenshot of the Celerity custom new tab page designed by Chad Probert",
+    previewAlt: "Screenshot of the Celerity custom new tab page designed by Henrique Antony",
   },
   {
     title: "Dev Trends",
@@ -42,11 +42,11 @@ const projectSchema = projects.map((project) => {
     "@type": "CreativeWork",
     name: project.title,
     description: project.description,
-    url: project.demoUrl ?? project.repoUrl ?? "https://chad-probert-portfolio.vercel.app/",
-    image: `https://chad-probert-portfolio.vercel.app${project.previewImage}`,
+    url: project.demoUrl ?? project.repoUrl ?? "https://www.henriqueantony.com.br/",
+    image: `https://www.henriqueantony.com.br${project.previewImage}`,
     creator: {
       "@type": "Person",
-      name: "Chad Probert",
+      name: "Henrique Antony",
     },
   };
 
@@ -140,7 +140,7 @@ const ProjectCard = ({
               className="inline-flex items-center rounded-xl border-1 hover:bg-foreground/5 px-4 py-2 text-base transition-colors duration-400"
               itemProp="sameAs"
             >
-              <Github className="mr-2 h-4 w-4" /> Repository
+              <Github className="mr-2 h-4 w-4" /> Repositorio
             </a>
           )}
         </div>
