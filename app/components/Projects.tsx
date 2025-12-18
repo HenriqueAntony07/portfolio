@@ -5,7 +5,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import "./Projects.css";
 import Image from "next/image";
 
-type Projetos = {
+type Project = {
   title: string;
   description: string;
   demoUrl?: string;
@@ -15,7 +15,7 @@ type Projetos = {
   previewAlt: string;
 };
 
-const projects: Projetos[] = [
+const projects: Project[] = [
   {
     title: "Celerity — New Tab Page",
     description:
