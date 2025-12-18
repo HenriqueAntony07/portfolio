@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { JetBrains_Mono } from "next/font/google"
-import "globals.css"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const jetbrainsMono = JetBrains_Mono({
