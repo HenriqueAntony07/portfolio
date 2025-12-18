@@ -1,0 +1,10 @@
+.demo-button {
+  background-color: var(--button-color);
+  color: var(--button-text);
+}
+
+.demo-button:hover {
+  background: var(--hover-background-color);
+  color: var(--hover-foreground-color);
+  transition: all 0.4s ease-in-out;
+}

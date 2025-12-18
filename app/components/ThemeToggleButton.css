@@ -1,0 +1,16 @@
+.theme-toggle-button .moon-icon {
+  display: none;
+}
+
+.theme-toggle-button .sun-icon {
+  display: block;
+}
+
+.dark .theme-toggle-button .moon-icon {
+  display: block;
+}
+
+.dark .theme-toggle-button .sun-icon {
+  display: none;
+}
+

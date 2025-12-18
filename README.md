@@ -1,55 +1,72 @@
 <div align="center">
-  
-  ![GitHub repo size](https://img.shields.io/github/repo-size/osamajavaid/portfolio)
-  ![GitHub stars](https://img.shields.io/github/stars/osamajavaid/portfolio?style=social)
-  ![GitHub forks](https://img.shields.io/github/forks/osamajavaid/portfolio?style=social)
-  [![Twitter Follow](https://img.shields.io/twitter/follow/iosamajavaid?style=social)](https://twitter.com/intent/follow?screen_name=iosamajavaid)
 
-  <br />
-  <br />
-  
-  <img src="./public/readme-images/moj.png" />
+# My Portfolio
 
-  <h2 align="center">Muhammad Osama Javaid - Personal portfolio</h2>
+### Tech Stack
 
-This website is fully responsive personal portfolio, <br />Responsive for all devices, built using Nextjs, TailwindCSS only.
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=fff)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=fff)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=fff)
+![EmailJS](https://img.shields.io/badge/EmailJS-000000?style=for-the-badge&logo=emailjs&logoColor=fff)
 
-<a href="https://osamajavaid.vercel.app/"><strong>➥ Live Demo</strong></a>
+![My Portfolio](public/my-portfolio.png)
 
 </div>
 
 <br />
 
-### Demo Screeshots
+## Features
 
-![Osama Portfolio Desktop Demo](./public/readme-images/portfolio.png "Desktop Demo")
+- **Home** — Modern, responsive, and includes CTA buttons to download my CV and contact me.
+- **About** — Learn about my mission and experience.
+- **Skills** — A marquee showcasing my tech skills as icons.
+- **Projects** — View my featured projects with live demos and GitHub repository links.
+- **Contact** — Send a message directly to my email using EmailJS.
+- **Theme** — Switch between light and dark themes.
+- **SEO Optimized** — High SEO performance and fast loading times.
+
+<br />
+
+<div align="center">
+
+### Lighthouse Metrics
+  
+<img src="public/lighthouse-scores.png" alt="Lighthouse Report">
+</div>
+
+<br />
+
+## Setup Instructions
 
 ### Prerequisites
+- **[Node.js](https://nodejs.org/)**
+- **[npm](https://www.npmjs.com/)**
 
-Before you begin, ensure you have met the following requirements:
 
-- [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
-
-### Run Locally
-
-To run **portfolio** locally, run this command on your git bash:
-
-Linux and macOS:
-
+### 1. Clone the repository
 ```bash
-sudo git clone https://github.com/osamajavaid/portfolio.git
+git clone https://github.com/ChadProbert/chad-probert-portfolio.git
 ```
 
-Windows:
-
+### 2. Install dependencies
 ```bash
-git clone https://github.com/osamajavaid/portfolio.git
+cd chad-probert-portfolio && npm install
 ```
 
-### Contact
+### 3. Environment variables
 
-If you want to contact with me you can reach me at [X](https://www.x.com/iosamajavaid).
+Create a `.env.local` file in the project root with the following variables:
 
-### License
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID = replace_with_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = replace_with_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = replace_with_public_key
+```
 
-This project is **free to use** and does not contains any license.
+### 4. Running the app
+```bash
+npm run dev
+```
+
+### 5. Open in browser
+Visit **[http://localhost:3000](http://localhost:3000)** in your browser.

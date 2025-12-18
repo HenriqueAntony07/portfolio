@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chad-probert-portfolio.vercel.app/sitemap.xml
