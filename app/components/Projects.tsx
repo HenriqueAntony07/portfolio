@@ -17,14 +17,14 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Celerity — New Tab Page",
+    title: "Pulse - Sex Shop",
     description:
-      "Celerity is a customisable new tab page featuring lightning-fast search, developer-inspired themes, and productivity shortcuts.",
-    demoUrl: "https://chadprobert.github.io/celerity/",
-    repoUrl: "https://github.com/ChadProbert/celerity",
+      "Criação de um e-commerce completo para um sex shop, utilizando wordpress e woocommerce, com design personalizado e funcionalidades avançadas para melhorar a experiência do usuário e aumentar as vendas.",
+    demoUrl: "./pulse",
+    repoUrl: "https://pulsesexshop.com.br/",
     previewSide: "right",
-    previewImage: "/project-images/Celerity.png",
-    previewAlt: "Screenshot of the Celerity custom new tab page designed by Henrique Antony",
+    previewImage: "/project-images/pulse.png",
+    previewAlt: "Print site Pulse Henrique Antony",
   },
   {
     title: "Dev Trends",
@@ -109,7 +109,7 @@ const ProjectCard = ({
       <div
         className={`flex flex-col gap-3 ${previewSide === "left" ? "lg:order-2" : "lg:order-1"}`}
       >
-        <span className="text-sm font-medium mb-0">Featured Project</span>
+        <span className="text-sm font-medium mb-0">E-commerce</span>
         <h3
           id={headingId}
           className="text-2xl sm:text-3xl font-semibold tracking-wide mb-3"
@@ -129,7 +129,7 @@ const ProjectCard = ({
               className="demo-button inline-flex items-center font-medium rounded-xl border-1 px-4 py-2 text-base transition-colors duration-400"
               itemProp="url"
             >
-              <ArrowUpRight className="mr-1 h-5 w-5" /> Demo
+              <ArrowUpRight className="mr-1 h-5 w-5" /> Detalhes
             </a>
           )}
           {repoUrl && (
@@ -140,7 +140,7 @@ const ProjectCard = ({
               className="inline-flex items-center rounded-xl border-1 hover:bg-foreground/5 px-4 py-2 text-base transition-colors duration-400"
               itemProp="sameAs"
             >
-              <Github className="mr-2 h-4 w-4" /> Repositorio
+              <ArrowUpRight className="mr-2 h-4 w-4" /> Ver Projeto
             </a>
           )}
         </div>
@@ -180,7 +180,7 @@ export const Projects = () => {
         id="projects-heading"
         className="text-3xl font-bold sm:text-5xl var(--foreground) mb-10 lg:mb-20 text-center tracking-wide"
       >
-        Projects
+        Meus Projetos
       </h2>
 
       <div>
