@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Henrique Antony",
   },
   description:
-    "Henrique Antony é um desenvolvedor web baseado na África do Sul especializando-se em builds performantes e amigáveis ao SEO com React e Next.js. Explore projetos selecionados, habilidades e detalhes de contato.",
+    "Henrique Antony é um desenvolvedor web brasileiro especializando-se em builds performantes e amigáveis ao SEO com React e Next.js. Explore projetos selecionados, habilidades e detalhes de contato.",
   keywords: [
     "Henrique Antony",
     "web developer",
