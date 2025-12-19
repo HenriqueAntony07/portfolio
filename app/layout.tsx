@@ -5,6 +5,9 @@ import { ThemeProvider } from "./context/ThemeProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import ScrollToTop from "./components/ScrollToTop";
+
 
 const geist = Geist({
   subsets: ["latin"],
@@ -197,6 +200,8 @@ export default function RootLayout({
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
         <SpeedInsights />
+        <FloatingWhatsApp phoneE164="5548999362572" />
+        <ScrollToTop />
       </body>
     </html>
   );

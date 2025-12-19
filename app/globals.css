@@ -205,3 +205,31 @@ html {
   .floating-wa__text{ display:none; } /* no mobile fica só o ícone */
   .floating-wa{ padding: 12px; }
 }
+
+.scroll-top{
+  position: fixed;
+  right: 16px;
+  bottom: 76px; /* fica acima do WhatsApp */
+  z-index: 9999;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+
+  background: rgba(37,41,46,.75);
+  border: 1px solid rgba(255,255,255,.12);
+  color: white;
+
+  display: grid;
+  place-items: center;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  cursor: pointer;
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.scroll-top:hover{
+  transform: translateY(-2px);
+}
