@@ -159,7 +159,7 @@ export const Contact = () => {
             <div className="flex flex-col space-y-4 pt-2">
               <div className="flex items-center justify-end gap-3 flex-wrap max-[500px]:justify-center max-[405px]:gap-2">
                 <a
-                  href="https://www.linkedin.com/in/chad-probert-6421b321b/"
+                  href="https://www.linkedin.com/in/henrique-antony-8574a3171/"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Connect with Chad on LinkedIn"
