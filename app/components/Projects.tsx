@@ -29,11 +29,11 @@ const projects: Project[] = [
   {
     title: "Dev Trends",
     description:
-      "A user-centric web app that consumes the DEV Community API to surface trending development articles with category filters and favourites.",
-    repoUrl: "https://github.com/ChadProbert/dev-trends",
+      "Criação de um e-commerce completo para um sex shop, utilizando wordpress e woocommerce, com design personalizado e funcionalidades avançadas para melhorar a experiência do usuário e aumentar as vendas.",
+    demoUrl: "./pulse",
     previewSide: "left",
-    previewImage: "/project-images/Devtrends.png",
-    previewAlt: "Screenshot of the Dev Trends article dashboard built by Chad Probert",
+    previewImage: "/project-images/pulse.png",
+    previewAlt: "Print site Pulse Henrique Antony",
   },
 ];
 
