@@ -117,7 +117,7 @@ export default function RootLayout({
           href="/apple-touch-icon.png"
         />
 
-        {/* ✅ GA4 */}
+        {/*GA4*/}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-6PH3GS6DSK"
           strategy="afterInteractive"
