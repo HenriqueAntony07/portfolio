@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -115,6 +116,21 @@ export default function RootLayout({
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
+
+        {/* ✅ GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6PH3GS6DSK"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6PH3GS6DSK');
+          `}
+        </Script>
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -125,7 +141,8 @@ export default function RootLayout({
                 name: "Chad Probert",
                 jobTitle: "Web Developer",
                 url: "https://chad-probert-portfolio.vercel.app/",
-                image: "https://chad-probert-portfolio.vercel.app/og-image-1200x630.jpg",
+                image:
+                  "https://chad-probert-portfolio.vercel.app/og-image-1200x630.jpg",
                 sameAs: [
                   "https://www.linkedin.com/in/chad-probert-6421b321b/",
                   "https://github.com/ChadProbert",
@@ -150,15 +167,16 @@ export default function RootLayout({
                 url: "https://chad-probert-portfolio.vercel.app/",
                 potentialAction: {
                   "@type": "SearchAction",
-                  target: "https://chad-probert-portfolio.vercel.app/?q={search_term_string}",
+                  target:
+                    "https://chad-probert-portfolio.vercel.app/?q={search_term_string}",
                   "query-input": "required name=search_term_string",
                 },
               },
             ]).replace(/</g, "\\u003c"),
           }}
-        />{/* Set theme from localStorage or system preference. Although dangerouslySetInnerHTML is not recommended, 
-        it is the recommended way to set the theme in this case. The practice is safe when the injected code is static
-        and does not contain any user-provided data. */}
+        />
+
+        {/* Set theme from localStorage or system preference */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(() => {
