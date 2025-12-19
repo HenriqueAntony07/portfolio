@@ -166,3 +166,42 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+.floating-wa{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  background: rgba(37,41,46,.92);
+  border: 1px solid rgba(255,255,255,.12);
+  color: white;
+  text-decoration: none;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.floating-wa:hover{
+  transform: translateY(-2px);
+}
+
+.floating-wa__text{
+  font-size: 14px;
+  line-height: 1;
+  opacity: .95;
+}
+
+@media (max-width: 480px){
+  .floating-wa__text{ display:none; } /* no mobile fica só o ícone */
+  .floating-wa{ padding: 12px; }
+}
