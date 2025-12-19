@@ -31,6 +31,7 @@ const projects: Project[] = [
     description:
       "Criação de um e-commerce completo para um sex shop, utilizando wordpress e woocommerce, com design personalizado e funcionalidades avançadas para melhorar a experiência do usuário e aumentar as vendas.",
     demoUrl: "./pulse",
+    repoUrl: "https://pulsesexshop.com.br/",
     previewSide: "left",
     previewImage: "/project-images/pulse.png",
     previewAlt: "Print site Pulse Henrique Antony",
