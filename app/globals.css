@@ -45,6 +45,16 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* =========================================================
+     Floating WhatsApp (LIGHT) - usa suas cores do tema
+     ========================================================= */
+  --wa-bg: rgba(255, 255, 255, 0.88);
+  --wa-border: oklch(0.145 0 0 / 0.14);
+  --wa-text: var(--foreground);
+  --wa-icon-bg: oklch(0.145 0 0 / 0.08);
+  --wa-bg-hover: rgba(255, 255, 255, 0.94);
+  --wa-border-hover: oklch(0.145 0 0 / 0.22);
 }
 
 .dark {
@@ -89,6 +99,16 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* =========================================================
+     Floating WhatsApp (DARK)
+     ========================================================= */
+  --wa-bg: rgba(37, 41, 46, 0.92);
+  --wa-border: rgba(255, 255, 255, 0.12);
+  --wa-text: #fff;
+  --wa-icon-bg: rgba(255, 255, 255, 0.10);
+  --wa-bg-hover: rgba(37, 41, 46, 0.96);
+  --wa-border-hover: rgba(255, 255, 255, 0.18);
 }
 
 body {
@@ -167,6 +187,9 @@ html {
   }
 }
 
+/* =========================================================
+   Floating WhatsApp (agora com tema)
+   ========================================================= */
 .floating-wa{
   position: fixed;
   right: 16px;
@@ -180,19 +203,35 @@ html {
   padding: 12px 15px;
   border-radius: 999px;
 
-  background: rgba(37,41,46,.92);
-  border: 1px solid rgba(255,255,255,.12);
-  color: white;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  color: var(--wa-text);
   text-decoration: none;
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  transition: transform .15s ease, opacity .15s ease;
+  transition: transform .15s ease, opacity .15s ease, background .15s ease, border-color .15s ease;
 }
 
 .floating-wa:hover{
   transform: translateY(-2px);
+}
+
+.floating-wa__icon{
+  
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+}
+
+.floating-wa__svg{
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 .floating-wa__text{
@@ -203,22 +242,22 @@ html {
 
 @media (max-width: 480px){
   .floating-wa__text{ display:none; } /* no mobile fica só o ícone */
-  .floating-wa{ padding: 12px; }
+  .floating-wa{ padding: 8px;}
 }
 
 .scroll-top{
   position: fixed;
   right: 16px;
-  bottom: 76px; /* fica acima do WhatsApp */
+  bottom: 76px;
   z-index: 9999;
 
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border-radius: 999px;
 
-  background: rgba(37,41,46,.75);
-  border: 1px solid rgba(255,255,255,.12);
-  color: white;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  color: var(--wa-text);
 
   display: grid;
   place-items: center;
@@ -227,9 +266,11 @@ html {
   -webkit-backdrop-filter: blur(10px);
 
   cursor: pointer;
-  transition: transform .15s ease, opacity .15s ease;
+  transition: transform .15s ease, opacity .15s ease, background .15s ease, border-color .15s ease;
 }
 
 .scroll-top:hover{
   transform: translateY(-2px);
+  background: var(--wa-bg-hover);
+  border-color: var(--wa-border-hover);
 }
