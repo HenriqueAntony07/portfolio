@@ -19,7 +19,7 @@ export const Hero = () => {
               </span>
             </span>
 
-            <div className="space-y-4">
+            <div className="space-y-4 ">
               <h1
                 id="home-heading"
                 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
@@ -30,7 +30,7 @@ export const Hero = () => {
               </p>
             </div>
 
-            <div className="mt-10 hero-actions flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <div className="rgb-wrap rounded-2xl">
               <a
                 href="#contact"
                 className="call-to-action inline-flex items-center gap-2 rounded-2xl border px-6 py-3 text-base font-medium transition-colors duration-300 hover:bg-foreground/5"
@@ -39,6 +39,7 @@ export const Hero = () => {
                 Entre em contato
               </a>
             </div>
+
           </header>
         </div>
       </div>

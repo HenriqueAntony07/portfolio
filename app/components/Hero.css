@@ -94,3 +94,67 @@
     transform: translateY(0);
   }
 }
+
+/* Wrapper RGB: só a BORDA aparece */
+.rgb-wrap{
+  position: relative;
+  display: inline-flex;
+  padding: 1px;               /* espessura da borda RGB */
+  border-radius: 1rem;        /* igual rounded-2xl */
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* camada RGB girando (fica no fundo) */
+.rgb-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-30%;                 /* grande pra girar sem “cortar” */
+  background: conic-gradient(
+    #ff004c,
+    #ffea00,
+    #00ff85,
+    #00c3ff,
+    #7a00ff,
+    #ff004c
+  );
+  animation: rgb-spin 3.2s linear infinite;
+  z-index: 0;
+}
+
+/* “miolo” por cima cobrindo tudo, deixando só a borda aparecer */
+.rgb-wrap::after{
+  content:"";
+  position:absolute;
+  inset: 2px;                 /* MESMO valor do padding */
+  border-radius: calc(1rem - 2px);
+  background: var(--background); /* fallback */
+  z-index: 1;
+}
+
+/* o botão fica acima do miolo */
+.rgb-wrap > .call-to-action{
+  position: relative;
+  z-index: 2;
+  border-radius: inherit;
+  background: transparent;     /* o miolo que pinta */
+}
+
+/* pega a cor real do seu botão (pra não “matar” o visual) */
+.rgb-wrap > .call-to-action{
+  /* se seu botão tem bg via Tailwind, isso garante que o miolo acompanhe */
+  background: transparent;
+}
+
+/* opcional: faz o miolo seguir o hover do botão */
+.rgb-wrap:hover::after{
+  background: color-mix(in oklab, var(--background) 92%, var(--foreground) 8%);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .rgb-wrap::before{ animation: none; }
+}
+
+@keyframes rgb-spin{
+  to { transform: rotate(360deg); }
+}
