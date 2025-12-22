@@ -76,21 +76,17 @@ export const Contact = () => {
 
       setStatus("Enviado com sucesso 🚀");
       form.reset();
-    } catch (error: unknown) {
-  console.error("EmailJS error:", error);
-
-  const errMsg =
-    error instanceof Error
-      ? error.message
-      : typeof error === "object" && error !== null && "text" in error
-        ? String((error as { text?: unknown }).text)
-        : "Tente novamente mais tarde.";
-
-  setStatus(`Falha ao enviar a mensagem. (${errMsg})`);
-} finally {
-  setLoading(false);
-}
-
+    } catch (error: any) {
+      console.error("EmailJS error:", error);
+      setStatus(
+        `Falha ao enviar a mensagem. ${
+          error?.text ? `(${error.text})` : "Tente novamente mais tarde."
+        }`
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="mb-24">
