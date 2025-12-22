@@ -200,7 +200,13 @@ export default function RootLayout({
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
         <SpeedInsights />
-        <FloatingWhatsApp phoneE164="5548999362572" />
+        <FloatingWhatsApp
+          phoneE164="5548999362572"
+          brand="Henrique Antony"
+          emailTo="henriqueantonydev@gmail.com"
+          contactSectionId="contact"
+        />
+
         <ScrollToTop />
       </body>
     </html>

@@ -25,10 +25,28 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // ✅ Fecha o menu e faz scroll suave no mobile/tablet
+  const handleMobileNavClick =
+    (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+
+      const id = href.startsWith("#") ? href.slice(1) : href;
+
+      // fecha o menu primeiro
+      setMobileMenuOpen(false);
+
+      // espera um tick pra UI fechar e depois rola
+      window.setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // opcional: atualiza a URL com a hash (sem pular de novo)
+        if (href.startsWith("#")) history.replaceState(null, "", href);
+      }, 80);
+    };
+
   return (
-    <header
-      className="sticky top-0 z-50 w-full overflow-x-clip transition-transform duration-300"
-    >
+    <header className="sticky top-0 z-50 w-full overflow-x-clip transition-transform duration-300">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <nav
           className={`flex items-center justify-between transition-all duration-300 ${
@@ -42,16 +60,14 @@ export const Navbar = () => {
               className="inline-flex items-center justify-center rounded-xl border-1 border-neutral-200 bg-background p-3 hover:bg-foreground/5 transition-colors duration-400 hover:cursor-pointer focus:outline-none"
             >
               <span className="sr-only">Open main menu</span>
-              <Menu
-                aria-hidden="true"
-                className="size-5"
-                color="var(--foreground)"
-              />
+              <Menu aria-hidden="true" className="size-5" color="var(--foreground)" />
             </button>
           </div>
+
           <div className="flex flex-1 justify-end lg:hidden">
             <ThemeToggleButton />
           </div>
+
           <div className="hidden lg:flex lg:w-full lg:justify-center">
             <div className="inline-flex items-center gap-6 rounded-full border border-border/60 bg-background/75 px-5 py-2 shadow-sm backdrop-blur">
               {navigation.map((item) => (
@@ -69,11 +85,8 @@ export const Navbar = () => {
           </div>
         </nav>
       </div>
-      <Dialog
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-        className="lg:hidden"
-      >
+
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div
           aria-hidden="true"
           className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm transition-colors dark:bg-black/40"
@@ -86,22 +99,18 @@ export const Navbar = () => {
               className="inline-flex items-center justify-center rounded-xl border-1 border-neutral-200 bg-background p-3 hover:bg-foreground/5 transition-colors duration-400 hover:cursor-pointer focus:outline-none"
             >
               <span className="sr-only">Close menu</span>
-              <X
-                aria-hidden="true"
-                className="size-5"
-                color="var(--foreground)"
-                strokeWidth={3}
-              />
+              <X aria-hidden="true" className="size-5" color="var(--foreground)" strokeWidth={3} />
             </button>
           </div>
+
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-border/60">
-              {/* Center it vertically */}
               <div className="space-y-2 py-10 text-center">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
+                    onClick={handleMobileNavClick(item.href)} // ✅ aqui
                     className="-mx-3 block px-3 py-2 font-semibold text-3xl"
                   >
                     {item.name}

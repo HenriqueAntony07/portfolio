@@ -1,0 +1,165 @@
+/* Overlay + Panel (usa suas vars --wa-*) */
+.floating-wa__overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.floating-wa__panel{
+  position: fixed;
+  right: 60px;
+  bottom: 76px;
+  width: min(320px, calc(100vw - 70px));
+  z-index: 9999;
+  
+  border-radius: 18px;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  color: var(--wa-text);
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.18);
+  overflow: hidden;
+}
+
+@media screen and (max-width: 350px) {
+    .floating-wa__panel{
+  position: fixed;
+  right: 5px;
+  bottom: 50px;
+  width: 300px;
+  z-index: 9999;
+  
+  border-radius: 18px;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  color: var(--wa-text);
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.18);
+  overflow: hidden;
+}
+
+    
+}
+
+.floating-wa__panelHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 10px 14px;
+  border-bottom: 1px solid var(--wa-border);
+}
+
+.floating-wa__panelKicker{
+  font-size: 12px;
+  opacity: .75;
+  line-height: 1.2;
+}
+.floating-wa__panelBrand{
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: .2px;
+  line-height: 1.2;
+}
+
+.floating-wa__close{
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--wa-border);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.floating-wa__close:hover{
+  transform: translateY(-1px);
+  background: var(--wa-icon-bg);
+  border-color: var(--wa-border-hover);
+}
+
+.floating-wa__panelBody{
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.floating-wa__option{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--wa-border);
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+  transition: transform .12s ease, background .15s ease, border-color .15s ease;
+}
+.floating-wa__option:hover{
+  transform: translateY(-1px);
+  background: var(--wa-icon-bg);
+  border-color: var(--wa-border-hover);
+}
+
+.floating-wa__optionLabel{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.floating-wa__optionDesc{
+  margin-top: 3px;
+  font-size: 12px;
+  opacity: .75;
+  line-height: 1.2;
+}
+
+.floating-wa__panelFooter{
+  padding: 10px 14px 14px 14px;
+  border-top: 1px solid var(--wa-border);
+}
+.floating-wa__hint{
+  font-size: 12px;
+  opacity: .75;
+  line-height: 1.35;
+}
+/* ✅ força texto das opções e header à esquerda */
+.floating-wa__panel,
+.floating-wa__panelHeader,
+.floating-wa__panelTitle,
+.floating-wa__panelBody,
+.floating-wa__option,
+.floating-wa__optionText,
+.floating-wa__panelFooter,
+.floating-wa__hint{
+  text-align: left;
+}
+
+/* ✅ garante que o bloco de texto fique alinhado e ocupe o espaço */
+.floating-wa__optionText{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ✅ evita centralização vertical estranha e mantém ícone à direita */
+.floating-wa__option{
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ✅ (opcional) se algum estilo global estiver centralizando buttons */
+.floating-wa__optionLabel,
+.floating-wa__optionDesc{
+  text-align: left;
+  width: 100%;
+}
