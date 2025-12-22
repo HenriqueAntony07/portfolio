@@ -123,7 +123,7 @@ export const Contact = () => {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="você@domain.com"
+                placeholder="você@dominio.com"
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
