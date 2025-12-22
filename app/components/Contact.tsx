@@ -44,14 +44,14 @@ export const Contact = () => {
 
     // Ensure the name, email and message fields are not empty
     if (!name.trim() || !email.trim() || !message.trim()) {
-      setStatus("Please fill out all the form fields.");
+      setStatus("Por favor, preencha todos os campos do formulário.");
       setLoading(false);
       return;
     }
 
     // Ensure the name and message fields do not exceed 100 characters
     if (name.length > 100 || email.length > 100 || message.length > 100) {
-      setStatus("Please ensure the name, email and message fields do not exceed 100 characters.");
+      setStatus("Máximo de 100 caracteres permitidos por campo.");
       setLoading(false);
       return;
     }
@@ -64,7 +64,7 @@ export const Contact = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
-      setStatus("Please enter a valid email address.");
+      setStatus("Por favor, insira um endereço de e-mail válido.");
       setLoading(false);
       return;
     }
@@ -78,13 +78,13 @@ export const Contact = () => {
       )
       .then(
         () => {
-          setStatus("Message sent successfully! 🚀");
+          setStatus("Enviado com sucesso 🚀");
           setLoading(false);
           form.reset();
         },
         (error) => {
           console.error(error);
-          setStatus("Failed to send message. Try again.");
+          setStatus("Falha ao enviar a mensagem. Tente novamente mais tarde.");
           setLoading(false);
         }
       );
@@ -104,13 +104,13 @@ export const Contact = () => {
           <form onSubmit={sendEmail} className="space-y-5">
             <div>
               <label htmlFor="name" className="mb-1 block text-md font-medium">
-                Name*
+                Nome*
               </label>
               <input
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Your name"
+                placeholder="Seu nome"
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -123,7 +123,7 @@ export const Contact = () => {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="you@domain.com"
+                placeholder="você@domain.com"
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -133,13 +133,13 @@ export const Contact = () => {
                 htmlFor="message"
                 className="mb-1 block text-md font-medium"
               >
-                Message*
+                Mensagem*
               </label>
               <textarea
                 id="message"
                 name="message"
                 rows={5}
-                placeholder="What would you like to chat about?"
+                placeholder="Diga como posso ajudar você?"
                 className="w-full resize-y rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -147,7 +147,7 @@ export const Contact = () => {
             {status && (
               <div
                 className={`justify-center flex mt-2 p-3 rounded-sm mb-5 text-lg border ${
-                  status === "Message sent successfully! 🚀"
+                  status === "Enviado com sucesso 🚀"
                     ? "bg-green-200 border-green-600 text-green-600"
                     : "bg-red-200 border-red-600 text-red-600"
                 } transition-all`}
@@ -162,17 +162,17 @@ export const Contact = () => {
                   href="https://www.linkedin.com/in/henrique-antony-8574a3171/"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Connect with Chad on LinkedIn"
+                  aria-label="Conectar no LinkedIn"
                   className="inline-flex items-center rounded-xl border px-4 py-2.5 text-md transition hover:bg-foreground/5 max-[405px]:px-2 max-[405px]:py-2 max-[405px]:text-sm"
                 >
                   <ArrowUpRight className="mr-2 h-5 w-5 text-[var(--foreground)] max-[405px]:mr-1.5 max-[405px]:h-4 max-[405px]:w-4" />
                   LinkedIn
                 </a>
                 <a
-                  href="mailto:chadcprobert@gmail.com"
+                  href="mailto:henriqueantonydev@gmail.com"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Send an email to Chad"
+                  aria-label="Enviar um email para Henrique Antony"
                   className="inline-flex items-center rounded-xl border px-4 py-2.5 text-md transition hover:bg-foreground/5 max-[405px]:px-2 max-[405px]:py-2 max-[405px]:text-sm"
                 >
                   <Mail className="mr-2 h-5 w-5 max-[405px]:mr-1.5 max-[405px]:h-4 max-[405px]:w-4" />
@@ -182,7 +182,7 @@ export const Contact = () => {
                   type="submit"
                   className="call-to-action cursor-pointer inline-flex items-center rounded-xl px-8 py-2.5 text-md transition-all duration-400 max-[405px]:px-5 border max-[405px]:py-2 max-[405px]:text-sm"
                 >
-                  {loading ? "Sending..." : "Send"}
+                  {loading ? "Sending..." : "Enviar"}
                 </button>
               </div>
             </div>
