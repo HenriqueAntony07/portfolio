@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
 import { Mail, ArrowUpRight } from "lucide-react";
 
 const CONTACT_SCHEMA = {
@@ -23,71 +22,76 @@ const CONTACT_SCHEMA = {
   },
 };
 
+type ApiResponse = {
+  ok: boolean;
+  error?: string;
+};
+
 export const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
 
-  // Sends a direct message to my email using EmailJS
-  // Validates form fields and email format
-  // validates length of name and message fields (max 100 characters)
-  // Returns a success or error message to the user
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  // Envia para /api/contact (server) -> EmailJS (plano free sem domínio)
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setStatus("");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const name = formData.get("name")!.toString();
-    const email = formData.get("email")!.toString();
-    const message = formData.get("message")!.toString();
 
+    const name = (formData.get("name")?.toString() ?? "").trim();
+    const email = (formData.get("email")?.toString() ?? "").trim();
+    const message = (formData.get("message")?.toString() ?? "").trim();
 
-    // Ensure the name, email and message fields are not empty
-    if (!name.trim() || !email.trim() || !message.trim()) {
+    if (!name || !email || !message) {
       setStatus("Por favor, preencha todos os campos do formulário.");
       setLoading(false);
       return;
     }
 
-    // Ensure the name and message fields do not exceed 100 characters
-    if (name.length > 100 || email.length > 100 || message.length > 100) {
-      setStatus("Máximo de 100 caracteres permitidos por campo.");
+    // Limites mais realistas
+    if (name.length > 100 || email.length > 120 || message.length > 2000) {
+      setStatus(
+        "Limite excedido: nome até 100, email até 120 e mensagem até 2000 caracteres."
+      );
       setLoading(false);
       return;
     }
 
-    // This regex pattern ensures the email has:
-    // - a single @ symbol
-    // - at least 1 character before and after @
-    // - at least 1 . in the domain part
-    // - no whitespace allowed
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!emailRegex.test(email)) {
       setStatus("Por favor, insira um endereço de e-mail válido.");
       setLoading(false);
       return;
     }
 
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        form,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      )
-      .then(
-        () => {
-          setStatus("Enviado com sucesso 🚀");
-          setLoading(false);
-          form.reset();
-        },
-        (error) => {
-          console.error(error);
-          setStatus("Falha ao enviar a mensagem. Tente novamente mais tarde.");
-          setLoading(false);
-        }
-      );
+    // Honeypot anti-spam (campo escondido no form)
+    const website = (formData.get("website")?.toString() ?? "").trim();
+
+    try {
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message, website }),
+      });
+
+      const data = (await resp.json()) as ApiResponse;
+
+      if (!resp.ok || !data.ok) {
+        setStatus(data.error || "Falha ao enviar a mensagem. Tente novamente mais tarde.");
+        setLoading(false);
+        return;
+      }
+
+      setStatus("Enviado com sucesso 🚀");
+      form.reset();
+    } catch (err: unknown) {
+      console.error(err);
+      setStatus("Falha ao enviar a mensagem. Tente novamente mais tarde.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -102,6 +106,15 @@ export const Contact = () => {
 
         <div className="mt-10 rounded-2xl border p-6 sm:p-16 bg-card shadow-lg">
           <form onSubmit={sendEmail} className="space-y-5">
+            {/* Honeypot (anti-bot) */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+            />
+
             <div>
               <label htmlFor="name" className="mb-1 block text-md font-medium">
                 Nome*
@@ -111,6 +124,7 @@ export const Contact = () => {
                 name="name"
                 type="text"
                 placeholder="Seu nome"
+                maxLength={100}
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -124,15 +138,13 @@ export const Contact = () => {
                 name="email"
                 type="email"
                 placeholder="você@dominio.com"
+                maxLength={120}
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
 
             <div>
-              <label
-                htmlFor="message"
-                className="mb-1 block text-md font-medium"
-              >
+              <label htmlFor="message" className="mb-1 block text-md font-medium">
                 Mensagem*
               </label>
               <textarea
@@ -140,6 +152,7 @@ export const Contact = () => {
                 name="message"
                 rows={5}
                 placeholder="Diga como posso ajudar você?"
+                maxLength={2000}
                 className="w-full resize-y rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -168,6 +181,7 @@ export const Contact = () => {
                   <ArrowUpRight className="mr-2 h-5 w-5 text-[var(--foreground)] max-[405px]:mr-1.5 max-[405px]:h-4 max-[405px]:w-4" />
                   LinkedIn
                 </a>
+
                 <a
                   href="mailto:henriqueantonydev@gmail.com"
                   target="_blank"
@@ -178,17 +192,20 @@ export const Contact = () => {
                   <Mail className="mr-2 h-5 w-5 max-[405px]:mr-1.5 max-[405px]:h-4 max-[405px]:w-4" />
                   Email
                 </a>
+
                 <button
                   type="submit"
-                  className="call-to-action cursor-pointer inline-flex items-center rounded-xl px-8 py-2.5 text-md transition-all duration-400 max-[405px]:px-5 border max-[405px]:py-2 max-[405px]:text-sm"
+                  disabled={loading}
+                  className="call-to-action cursor-pointer inline-flex items-center rounded-xl px-8 py-2.5 text-md transition-all duration-400 max-[405px]:px-5 border max-[405px]:py-2 max-[405px]:text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? "Sending..." : "Enviar"}
+                  {loading ? "Enviando..." : "Enviar"}
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
