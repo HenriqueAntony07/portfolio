@@ -13,8 +13,8 @@ const CONTACT_SCHEMA = {
     name: "Henrique Antony",
     email: "mailto:henriqueantonydev@gmail.com",
     sameAs: [
-      "https://www.linkedin.com/in/chad-probert-6421b321b/",
-      "https://github.com/ChadProbert",
+      "https://www.linkedin.com/in/henrique-antony-8574a3171/",
+      "https://github.com/HenriqueAntony07",
     ],
     worksFor: {
       "@type": "Organization",
