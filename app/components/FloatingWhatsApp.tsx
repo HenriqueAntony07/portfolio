@@ -7,6 +7,7 @@ import { X, ArrowUpRight } from "lucide-react";
 type Props = {
   phoneE164: string;         // "5511999999999"
   brand?: string;            // "Henrique Antony"
+  emailto?: string;          // "mailto:henrique
   contactSectionId?: string; // "contact" (opcional)
 };
 
