@@ -203,7 +203,6 @@ export default function RootLayout({
         <FloatingWhatsApp
           phoneE164="5548999362572"
           brand="Henrique Antony"
-          emailTo="henriqueantonydev@gmail.com"
           contactSectionId="contact"
         />
 
