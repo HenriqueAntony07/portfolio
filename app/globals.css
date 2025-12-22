@@ -274,3 +274,12 @@ html {
   background: var(--wa-bg-hover);
   border-color: var(--wa-border-hover);
 }
+ .gap-3 {
+        gap: calc(var(--spacing)*1.5);
+    }
+
+  .max-\[405px\]\:px-5 {
+    @media (width < 405px) {
+      padding-inline: calc(var(--spacing) * 18);
+    }
+  }
