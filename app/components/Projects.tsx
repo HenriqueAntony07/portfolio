@@ -27,13 +27,13 @@ const projects: Project[] = [
     previewAlt: "Print site Pulse Henrique Antony",
   },
   {
-    title: "Dev Trends",
+    title: "Estilo Domum ",
     description:
       "Criação de um e-commerce completo para um sex shop, utilizando wordpress e woocommerce, com design personalizado e funcionalidades avançadas para melhorar a experiência do usuário e aumentar as vendas.",
-    demoUrl: "./pulse",
-    repoUrl: "https://pulsesexshop.com.br/",
+    demoUrl: "./domum",
+    repoUrl: "https://estilodomum.com.br/",
     previewSide: "left",
-    previewImage: "/project-images/pulse.png",
+    previewImage: "/project-images/domum.png",
     previewAlt: "Print site Pulse Henrique Antony",
   },
 ];

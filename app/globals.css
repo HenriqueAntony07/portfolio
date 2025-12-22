@@ -283,3 +283,6 @@ html {
       padding-inline: calc(var(--spacing) * 18);
     }
   }
+  .px-8 {
+    padding-inline: calc(var(--spacing) * 6);
+}

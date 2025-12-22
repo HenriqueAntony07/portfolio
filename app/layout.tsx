@@ -141,15 +141,15 @@ export default function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "Person",
-                name: "Chad Probert",
+                name: "Henrique Antony",
                 jobTitle: "Web Developer",
-                url: "https://chad-probert-portfolio.vercel.app/",
+                url: "https://henriqueantony.com.br/",
                 image:
-                  "https://chad-probert-portfolio.vercel.app/og-image-1200x630.jpg",
+                  "https://henriqueantony.com.br/og-image-1200x630.jpg",
                 sameAs: [
-                  "https://www.linkedin.com/in/chad-probert-6421b321b/",
-                  "https://github.com/ChadProbert",
-                  "mailto:chadcprobert@gmail.com",
+                  "https://www.linkedin.com/in/henrique-antony-8574a3171/",
+                  "https://github.com/HenriqueAntony07",
+                  "mailto:henriqueantony@gmail.com",
                 ],
                 knowsAbout: [
                   "JavaScript",
@@ -166,12 +166,12 @@ export default function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                name: "Chad Probert Portfolio",
-                url: "https://chad-probert-portfolio.vercel.app/",
+                name: "Portfolio",
+                url: "https://henriqueantony.com.br/",
                 potentialAction: {
                   "@type": "SearchAction",
                   target:
-                    "https://chad-probert-portfolio.vercel.app/?q={search_term_string}",
+                    "https://henriqueantony.com.br/?q={search_term_string}",
                   "query-input": "required name=search_term_string",
                 },
               },
