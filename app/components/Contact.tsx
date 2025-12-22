@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Mail, ArrowUpRight } from "lucide-react";
 
@@ -13,7 +13,7 @@ const CONTACT_SCHEMA = {
     name: "Henrique Antony",
     email: "mailto:henriqueantonydev@gmail.com",
     sameAs: [
-      "https://www.linkedin.com/in/henrique-antony-857574a3171/",
+      "https://www.linkedin.com/in/henrique-antony-8574a3171/",
       "https://github.com/HenriqueAntony07",
     ],
     worksFor: {
@@ -26,66 +26,68 @@ const CONTACT_SCHEMA = {
 export const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Sends a direct message to my email using EmailJS
+  // Validates form fields and email format
+  // validates length of name and message fields (max 100 characters)
+  // Returns a success or error message to the user
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("");
     setLoading(true);
 
-    const form = formRef.current;
-    if (!form) {
-      setStatus("Erro: formulário não encontrado.");
-      setLoading(false);
-      return;
-    }
-
+    const form = e.currentTarget;
     const formData = new FormData(form);
-    const name = String(formData.get("from_name") ?? "");
-    const email = String(formData.get("reply_to") ?? "");
-    const message = String(formData.get("message") ?? "");
+    const name = formData.get("name")!.toString();
+    const email = formData.get("email")!.toString();
+    const message = formData.get("message")!.toString();
 
-    // Campos obrigatórios
+
+    // Ensure the name, email and message fields are not empty
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus("Por favor, preencha todos os campos do formulário.");
       setLoading(false);
       return;
     }
 
-    // Limites (mensagem 100 estava apertado demais)
-    if (name.length > 100 || email.length > 120 || message.length > 2000) {
-      setStatus("Limite excedido: nome até 100, email até 120 e mensagem até 2000 caracteres.");
+    // Ensure the name and message fields do not exceed 100 characters
+    if (name.length > 100 || email.length > 100 || message.length > 100) {
+      setStatus("Máximo de 100 caracteres permitidos por campo.");
       setLoading(false);
       return;
     }
 
+    // This regex pattern ensures the email has:
+    // - a single @ symbol
+    // - at least 1 character before and after @
+    // - at least 1 . in the domain part
+    // - no whitespace allowed
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
       setStatus("Por favor, insira um endereço de e-mail válido.");
       setLoading(false);
       return;
     }
 
-    try {
-      await emailjs.sendForm(
-        "service_i191sez",
-        "template_x5d16tf",
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         form,
-        { publicKey: "Jm1iHQ8E3yZOhxtRv" }
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      .then(
+        () => {
+          setStatus("Enviado com sucesso 🚀");
+          setLoading(false);
+          form.reset();
+        },
+        (error) => {
+          console.error(error);
+          setStatus("Falha ao enviar a mensagem. Tente novamente mais tarde.");
+          setLoading(false);
+        }
       );
-
-      setStatus("Enviado com sucesso 🚀");
-      form.reset();
-    } catch (error: any) {
-      console.error("EmailJS error:", error);
-      setStatus(
-        `Falha ao enviar a mensagem. ${
-          error?.text ? `(${error.text})` : "Tente novamente mais tarde."
-        }`
-      );
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -99,24 +101,16 @@ export const Contact = () => {
         </p>
 
         <div className="mt-10 rounded-2xl border p-6 sm:p-16 bg-card shadow-lg">
-          <form ref={formRef} onSubmit={sendEmail} className="space-y-5">
-            {/* Envia o {{time}} que seu template usa */}
-            <input
-              type="hidden"
-              name="time"
-              value={new Date().toLocaleString("pt-BR")}
-            />
-
+          <form onSubmit={sendEmail} className="space-y-5">
             <div>
               <label htmlFor="name" className="mb-1 block text-md font-medium">
                 Nome*
               </label>
               <input
                 id="name"
-                name="from_name"
+                name="name"
                 type="text"
                 placeholder="Seu nome"
-                maxLength={100}
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -127,16 +121,18 @@ export const Contact = () => {
               </label>
               <input
                 id="email"
-                name="reply_to"
+                name="email"
                 type="email"
-                placeholder="voce@domain.com"
-                maxLength={120}
+                placeholder="você@domain.com"
                 className="w-full rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="mb-1 block text-md font-medium">
+              <label
+                htmlFor="message"
+                className="mb-1 block text-md font-medium"
+              >
                 Mensagem*
               </label>
               <textarea
@@ -144,7 +140,6 @@ export const Contact = () => {
                 name="message"
                 rows={5}
                 placeholder="Diga como posso ajudar você?"
-                maxLength={2000}
                 className="w-full resize-y rounded border px-3 py-2 outline-none transition placeholder:text-muted-foreground/70 focus:ring-1 focus:ring-foreground/100 bg-[var(--input-background)]"
               />
             </div>
@@ -152,7 +147,7 @@ export const Contact = () => {
             {status && (
               <div
                 className={`justify-center flex mt-2 p-3 rounded-sm mb-5 text-lg border ${
-                  status.includes("Enviado com sucesso")
+                  status === "Enviado com sucesso 🚀"
                     ? "bg-green-200 border-green-600 text-green-600"
                     : "bg-red-200 border-red-600 text-red-600"
                 } transition-all`}
@@ -173,7 +168,6 @@ export const Contact = () => {
                   <ArrowUpRight className="mr-2 h-5 w-5 text-[var(--foreground)] max-[405px]:mr-1.5 max-[405px]:h-4 max-[405px]:w-4" />
                   LinkedIn
                 </a>
-
                 <a
                   href="mailto:henriqueantonydev@gmail.com"
                   target="_blank"
@@ -184,20 +178,17 @@ export const Contact = () => {
                   <Mail className="mr-2 h-5 w-5 max-[405px]:mr-1.5 max-[405px]:h-4 max-[405px]:w-4" />
                   Email
                 </a>
-
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="call-to-action cursor-pointer inline-flex items-center rounded-xl px-8 py-2.5 text-md transition-all duration-400 max-[405px]:px-5 border max-[405px]:py-2 max-[405px]:text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="call-to-action cursor-pointer inline-flex items-center rounded-xl px-8 py-2.5 text-md transition-all duration-400 max-[405px]:px-5 border max-[405px]:py-2 max-[405px]:text-sm"
                 >
-                  {loading ? "Enviando..." : "Enviar"}
+                  {loading ? "Sending..." : "Enviar"}
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
