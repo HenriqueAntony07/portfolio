@@ -83,9 +83,34 @@ export default function FloatingWhatsApp({
   );
 
   function openWhats(message: string) {
-    const href = `${base}${encodeURIComponent(message)}`;
-    window.open(href, "_blank", "noopener,noreferrer");
+  const href = `${base}${encodeURIComponent(message)}`;
+
+  // dispara conversão do Google Ads e depois abre o WhatsApp
+  const gtag = (window as unknown as { gtag?: (...args: any[]) => void }).gtag;
+
+  if (typeof gtag === "function") {
+    let opened = false;
+
+    const openNow = () => {
+      if (opened) return;
+      opened = true;
+      window.open(href, "_blank", "noopener,noreferrer");
+    };
+
+    // evento de conversão do Ads
+    gtag("event", "conversion", {
+      send_to: "AW-17828795650/_XXeCMCXitkbEIKqt7VC",
+      event_callback: openNow,
+    });
+
+    // fallback caso o callback não dispare (bloqueio/adblock/latência)
+    setTimeout(openNow, 800);
+    return;
   }
+
+  // fallback se gtag ainda não carregou
+  window.open(href, "_blank", "noopener,noreferrer");
+}
 
   function scrollToContact() {
     const el = document.getElementById(contactSectionId);

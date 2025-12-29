@@ -120,17 +120,40 @@ export default function RootLayout({
           href="/apple-touch-icon.png"
         />
 
-        {/*GA4*/}
+        {/* GA4 + Google Ads (gtag) */}
+        
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6PH3GS6DSK"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17828795650"
           strategy="afterInteractive"
         />
-        <Script id="ga4-init" strategy="lazyOnload">
+
+        <Script id="gtag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+
             gtag('js', new Date());
+
+            // GA4
             gtag('config', 'G-6PH3GS6DSK');
+
+            // Google Ads
+            gtag('config', 'AW-17828795650');
+
+            // Conversão (snippet)
+            window.gtag_report_conversion = function(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                'send_to': 'AW-17828795650/_XXeCMCXitkbEIKqt7VC',
+                'event_callback': callback
+              });
+              return false;
+            }
           `}
         </Script>
 
