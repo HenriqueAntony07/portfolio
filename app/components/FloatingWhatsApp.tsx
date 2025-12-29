@@ -85,9 +85,9 @@ export default function FloatingWhatsApp({
   function openWhats(message: string) {
   const href = `${base}${encodeURIComponent(message)}`;
 
-  // dispara conversão do Google Ads e depois abre o WhatsApp
-  const gtag = (window as unknown as { gtag?: (...args: any[]) => void }).gtag;
+  const gtag = window.gtag;
 
+  // Se o gtag existir, dispara conversão e abre WhatsApp depois
   if (typeof gtag === "function") {
     let opened = false;
 
@@ -97,18 +97,17 @@ export default function FloatingWhatsApp({
       window.open(href, "_blank", "noopener,noreferrer");
     };
 
-    // evento de conversão do Ads
     gtag("event", "conversion", {
       send_to: "AW-17828795650/_XXeCMCXitkbEIKqt7VC",
       event_callback: openNow,
     });
 
-    // fallback caso o callback não dispare (bloqueio/adblock/latência)
+    // fallback caso callback não rode
     setTimeout(openNow, 800);
     return;
   }
 
-  // fallback se gtag ainda não carregou
+  // fallback se gtag não carregou
   window.open(href, "_blank", "noopener,noreferrer");
 }
 
