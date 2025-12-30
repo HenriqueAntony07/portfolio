@@ -8,11 +8,12 @@ import "./globals.css";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import ScrollToTop from "./components/ScrollToTop";
 
-
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist",
 });
+
+const META_PIXEL_ID = "1524983748727453";
 
 // Metadata for SEO
 export const metadata: Metadata = {
@@ -81,48 +82,26 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content="VqZgBZPUnVZWGmKd7QTkznbrs0ClrxODP13ot0sRP5Q" />
+        <meta
+          name="google-site-verification"
+          content="VqZgBZPUnVZWGmKd7QTkznbrs0ClrxODP13ot0sRP5Q"
+        />
         <meta name="theme-color" content="#25292e" />
         <meta name="color-scheme" content="dark light" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="preconnect"
           href="https://vitals.vercel-insights.com"
           crossOrigin="anonymous"
         />
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="/favicon.ico"
-          sizes="16x16 32x32"
-        />
 
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/android-chrome-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="512x512"
-          href="/android-chrome-512x512.png"
-        />
-
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
         {/* GA4 + Google Ads (gtag) */}
-        
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17828795650"
           strategy="afterInteractive"
@@ -144,19 +123,45 @@ export default function RootLayout({
 
             // Conversão (snippet)
             window.gtag_report_conversion = function(url) {
+              // (Opcional) também conta no Meta Pixel quando houver clique no WhatsApp
+              if (typeof window.fbq === 'function') {
+                window.fbq('track', 'Contact');
+                // ou, se preferir:
+                // window.fbq('trackCustom', 'WhatsAppClick');
+              }
+
               var callback = function () {
                 if (typeof(url) != 'undefined') {
                   window.location = url;
                 }
               };
+
               gtag('event', 'conversion', {
                 'send_to': 'AW-17828795650/_XXeCMCXitkbEIKqt7VC',
                 'event_callback': callback
               });
+
               return false;
             }
           `}
         </Script>
+
+        {/* Meta Pixel Code */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${META_PIXEL_ID}');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        {/* End Meta Pixel Code */}
 
         <script
           type="application/ld+json"
@@ -168,20 +173,13 @@ export default function RootLayout({
                 name: "Henrique Antony",
                 jobTitle: "Web Developer",
                 url: "https://henriqueantony.com.br/",
-                image:
-                  "https://henriqueantony.com.br/og-image-1200x630.jpg",
+                image: "https://henriqueantony.com.br/og-image-1200x630.jpg",
                 sameAs: [
                   "https://www.linkedin.com/in/henrique-antony-8574a3171/",
                   "https://github.com/HenriqueAntony07",
                   "mailto:henriqueantony@gmail.com",
                 ],
-                knowsAbout: [
-                  "JavaScript",
-                  "TypeScript",
-                  "React",
-                  "Next.js",
-                  "Node.js",
-                ],
+                knowsAbout: ["JavaScript", "TypeScript", "React", "Next.js", "Node.js"],
                 worksFor: {
                   "@type": "Organization",
                   name: "Natmed Medical Defence",
@@ -194,8 +192,7 @@ export default function RootLayout({
                 url: "https://henriqueantony.com.br/",
                 potentialAction: {
                   "@type": "SearchAction",
-                  target:
-                    "https://henriqueantony.com.br/?q={search_term_string}",
+                  target: "https://henriqueantony.com.br/?q={search_term_string}",
                   "query-input": "required name=search_term_string",
                 },
               },
@@ -219,30 +216,25 @@ export default function RootLayout({
             })();`,
           }}
         />
-        
-        <!-- Meta Pixel Code -->
-        <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1524983748727453');
-        fbq('track', 'PageView');
-        </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1524983748727453&ev=PageView&noscript=1"
-        /></noscript>
-        <!-- End Meta Pixel Code -->
-
       </head>
+
       <body className={`${geist.className} ${geist.variable}`}>
+        {/* Meta Pixel (noscript) */}
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            alt=""
+          />
+        </noscript>
+
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
         <SpeedInsights />
+
         <FloatingWhatsApp
           phoneE164="5548999362572"
           brand="Henrique Antony"
