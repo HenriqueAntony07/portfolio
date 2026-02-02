@@ -43,7 +43,7 @@ const projects: Project[] = [
     demoUrl: "#",
     repoUrl: "https://produtosmakemais.com.br/novo/",
     previewSide: "right",
-    previewImage: "/project-images/domum.png",
+    previewImage: "/project-images/makemais.png",
     previewAlt: "Print site Pulse Henrique Antony",
   },
 ];
