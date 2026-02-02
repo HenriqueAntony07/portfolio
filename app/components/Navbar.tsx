@@ -31,21 +31,40 @@ export const Navbar = () => {
   }, []);
 
   const handleNavClick =
-    (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
+  (id: string) => async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
 
-      setMobileMenuOpen(false);
+    if (isHome) {
+      const el = document.getElementById(id);
+      if (el) {
+        const y =
+          el.getBoundingClientRect().top +
+          window.pageYOffset -
+          110; // altura do navbar
 
-      if (isHome) {
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-          history.replaceState(null, "", `#${id}`);
-        }
-      } else {
-        router.push(`/#${id}`);
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
       }
-    };
+    } else {
+      // 👇 impede scroll automático do Next
+      await router.push("/");
+
+      // 👇 espera o DOM estabilizar
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const y =
+          el.getBoundingClientRect().top +
+          window.pageYOffset -
+          110;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      }, 60);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full overflow-x-clip transition-transform duration-300">

@@ -295,14 +295,3 @@ html {
     align-content: center;
 }
 
-/* Corrige navegação por hash com navbar sticky */
-section[id] {
-  scroll-margin-top: 96px;
-}
-
-/* Ajuste fino para desktop (navbar mais alto) */
-@media (min-width: 1024px) {
-  section[id] {
-    scroll-margin-top: 110px;
-  }
-}
