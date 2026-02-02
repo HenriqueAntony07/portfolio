@@ -29,7 +29,7 @@ const projects: Project[] = [
   {
     title: "Estilo Domum ",
     description:
-      "Criação de um e-commerce completo para um sex shop, utilizando wordpress e woocommerce, com design personalizado e funcionalidades avançadas para melhorar a experiência do usuário e aumentar as vendas.",
+      "Criação de um e-commerce para a marca Domum, desenvolvido em WordPress e WooCommerce, com design exclusivo, elegante e estratégico. O projeto é focado em experiência do usuário, performance, conversão e escalabilidade, integrando funcionalidades avançadas como navegação intuitiva, filtros inteligentes, busca otimizada, layout responsivo premium e recursos pensados para aumentar o ticket médio e as vendas recorrentes.",
     demoUrl: "./domum",
     repoUrl: "https://estilodomum.com.br/",
     previewSide: "left",
