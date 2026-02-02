@@ -42,7 +42,7 @@ const projects: Project[] = [
       "Criação de um e-commerce para a marca Domum, desenvolvido em WordPress e WooCommerce, com design exclusivo, elegante e estratégico. O projeto é focado em experiência do usuário, performance, conversão e escalabilidade, integrando funcionalidades avançadas como navegação intuitiva, filtros inteligentes, busca otimizada, layout responsivo premium e recursos pensados para aumentar o ticket médio e as vendas recorrentes.",
     demoUrl: "#",
     repoUrl: "https://produtosmakemais.com.br/novo/",
-    previewSide: "left",
+    previewSide: "right",
     previewImage: "/project-images/domum.png",
     previewAlt: "Print site Pulse Henrique Antony",
   },
