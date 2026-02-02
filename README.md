@@ -1,6 +1,6 @@
 <div align="center">
 
-# My Portfolio
+# Meu Portfólio
 
 ### Tech Stack
 
@@ -17,14 +17,13 @@
 
 ## Features
 
-- **Home** — Modern, responsive, and includes CTA buttons to download my CV and contact me.
-- **About** — Learn about my mission and experience.
-- **Skills** — A marquee showcasing my tech skills as icons.
-- **Projects** — View my featured projects with live demos and GitHub repository links.
-- **Contact** — Send a message directly to my email using EmailJS.
-- **Theme** — Switch between light and dark themes.
-- **SEO Optimized** — High SEO performance and fast loading times.
-
+- **Home** — Interface moderna e totalmente responsiva, com CTAs estratégicos para download do currículo e contato direto.
+- **About** — Visão aprofundada sobre minha trajetória, propósito e experiência profissional.
+- **Skills** — Faixa animada apresentando minhas competências técnicas por meio de ícones.
+- **Projects** — Curadoria de projetos em destaque, com acesso a demos ao vivo e repositórios no GitHub.
+- **Contact** — Envio de mensagens direto para meu e-mail via EmailJS, de forma simples e eficiente.
+- **Theme** — Alternância fluida entre os modos claro e escuro.
+- **SEO Optimized** — Estrutura otimizada para SEO, com alta performance e carregamento rápido.
 <br />
 
 <div align="center">
