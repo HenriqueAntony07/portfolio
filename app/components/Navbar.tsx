@@ -4,19 +4,24 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { X, Menu } from "lucide-react";
 import { ThemeToggleButton } from "./ThemeToggleButton";
+import { usePathname, useRouter } from "next/navigation";
 import "./Navbar.css";
 
 const navigation = [
-  { name: "Home", href: "#home" },
-  { name: "Sobre", href: "#about" },
-  { name: "Habilidades", href: "#skills" },
-  { name: "Projetos", href: "#projects" },
-  { name: "Contato", href: "#contact" },
+  { name: "Home", id: "home" },
+  { name: "Sobre", id: "about" },
+  { name: "Habilidades", id: "skills" },
+  { name: "Projetos", id: "projects" },
+  { name: "Contato", id: "contact" },
 ];
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 0);
@@ -25,25 +30,41 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // ✅ Fecha o menu e faz scroll suave no mobile/tablet
-  const handleMobileNavClick =
-    (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
+  const handleNavClick =
+  (id: string) => async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
 
-      const id = href.startsWith("#") ? href.slice(1) : href;
+    if (isHome) {
+      const el = document.getElementById(id);
+      if (el) {
+        const y =
+          el.getBoundingClientRect().top +
+          window.pageYOffset -
+          110; // altura do navbar
 
-      // fecha o menu primeiro
-      setMobileMenuOpen(false);
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      }
+    } else {
+      // 👇 impede scroll automático do Next
+      await router.push("/");
 
-      // espera um tick pra UI fechar e depois rola
-      window.setTimeout(() => {
+      // 👇 espera o DOM estabilizar
+      setTimeout(() => {
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (!el) return;
 
-        // opcional: atualiza a URL com a hash (sem pular de novo)
-        if (href.startsWith("#")) history.replaceState(null, "", href);
-      }, 80);
-    };
+        const y =
+          el.getBoundingClientRect().top +
+          window.pageYOffset -
+          110;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      }, 60);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full overflow-x-clip transition-transform duration-300">
@@ -53,32 +74,37 @@ export const Navbar = () => {
             isScrolled ? "py-6" : "py-4 sm:py-12"
           }`}
         >
+          {/* Mobile left */}
           <div className="flex flex-1 lg:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="inline-flex items-center justify-center rounded-xl border-1 border-neutral-200 bg-background p-3 hover:bg-foreground/5 transition-colors duration-400 hover:cursor-pointer focus:outline-none"
+              className="inline-flex items-center justify-center rounded-xl border-1 border-neutral-200 bg-background p-3 hover:bg-foreground/5 transition-colors duration-400"
             >
               <span className="sr-only">Open main menu</span>
-              <Menu aria-hidden="true" className="size-5" color="var(--foreground)" />
+              <Menu className="size-5" />
             </button>
           </div>
 
+          {/* Mobile right */}
           <div className="flex flex-1 justify-end lg:hidden">
             <ThemeToggleButton />
           </div>
 
+          {/* Desktop */}
           <div className="hidden lg:flex lg:w-full lg:justify-center">
             <div className="inline-flex items-center gap-6 rounded-full border border-border/60 bg-background/75 px-5 py-2 shadow-sm backdrop-blur">
               {navigation.map((item) => (
                 <a
                   key={item.name}
-                  href={item.href}
+                  href={`#${item.id}`}
+                  onClick={handleNavClick(item.id)}
                   className="text-sm font-medium tracking-wide text-foreground/75 transition-colors hover:text-foreground"
                 >
                   {item.name}
                 </a>
               ))}
+
               <span className="h-6 w-px bg-border/60" aria-hidden="true" />
               <ThemeToggleButton />
             </div>
@@ -86,38 +112,32 @@ export const Navbar = () => {
         </nav>
       </div>
 
+      {/* Mobile Menu */}
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm transition-colors dark:bg-black/40"
-        />
-        <DialogPanel className="fixed inset-y-0 right-0 z-60 w-full overflow-y-auto bg-background p-4 text-foreground shadow-lg transition-colors sm:max-w-sm sm:ring-1 sm:ring-border">
+        <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm dark:bg-black/40" />
+
+        <DialogPanel className="fixed inset-y-0 right-0 z-60 w-full overflow-y-auto bg-background p-4 shadow-lg sm:max-w-sm sm:ring-1 sm:ring-border">
           <div className="flex items-center justify-between">
             <button
-              type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center justify-center rounded-xl border-1 border-neutral-200 bg-background p-3 hover:bg-foreground/5 transition-colors duration-400 hover:cursor-pointer focus:outline-none"
+              className="rounded-xl border-1 border-neutral-200 bg-background p-3 hover:bg-foreground/5 transition-colors"
             >
               <span className="sr-only">Close menu</span>
-              <X aria-hidden="true" className="size-5" color="var(--foreground)" strokeWidth={3} />
+              <X className="size-5" strokeWidth={3} />
             </button>
           </div>
 
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-border/60">
-              <div className="space-y-2 py-10 text-center">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={handleMobileNavClick(item.href)} // ✅ aqui
-                    className="-mx-3 block px-3 py-2 font-semibold text-3xl"
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </div>
+          <div className="mt-6 text-center">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={`#${item.id}`}
+                onClick={handleNavClick(item.id)}
+                className="block py-3 text-3xl font-semibold"
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
         </DialogPanel>
       </Dialog>
