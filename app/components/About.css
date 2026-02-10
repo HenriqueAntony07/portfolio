@@ -128,6 +128,7 @@
 }
 .about-section {
   position: relative;
+  min-height: 80vh;
 }
 
 /* imagem de fundo */
@@ -153,7 +154,7 @@
   );
 }
 
-/* mobile: menos impacto visual */
+/* mobile */
 @media (max-width: 768px) {
   .about-bg {
     background-position: center;

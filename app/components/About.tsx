@@ -58,7 +58,7 @@ export const About = () => {
     >
       {/* Background image */}
     <div className="about-bg" aria-hidden />
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 ">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div
           ref={cardRef}
           className="about-card reveal-on-scroll rounded-3xl bg-[var(--background)]/80 px-6 py-12 text-center backdrop-blur-sm sm:px-12 sm:py-16"
