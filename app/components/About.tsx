@@ -54,9 +54,10 @@ export const About = () => {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="about-section mb-30 lg:mb-50"
+       className="about-section relative mb-30 lg:mb-50 overflow-hidden"
     >
-      <div><img src="/fundocaricatura.png" alt="Fundocaricatura" className="w-full h-full object-cover" /></div>
+      {/* Background image */}
+    <div className="about-bg" aria-hidden />
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 ">
         <div
           ref={cardRef}
