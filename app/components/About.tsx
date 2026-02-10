@@ -56,7 +56,7 @@ export const About = () => {
       aria-labelledby="about-heading"
       className="about-section mb-30 lg:mb-50"
     >
-      <div> <img src="/public/images/fundocaricatura.png" alt="Foto de perfil" className="w-24 h-24 rounded-full object-cover mx-auto" /></div>
+      <div><img src="/fundocaricatura.png" alt="Fundocaricatura" className="w-full h-full object-cover" /></div>
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 ">
         <div
           ref={cardRef}
