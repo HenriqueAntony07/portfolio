@@ -134,7 +134,7 @@
 .about-bg {
   position: absolute;
   inset: 0;
-  background-image: url("/public/project-images/fundocaricatura.png");
+  background-image: url("/project-images/fundocaricatura.png");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
