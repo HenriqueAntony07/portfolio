@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import ScrollToTop from "./components/ScrollToTop";
+import Loader from "./components/Loader";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -219,6 +220,7 @@ export default function RootLayout({
       </head>
 
       <body className={`${geist.className} ${geist.variable}`}>
+        <Loader />
         {/* Meta Pixel (noscript) */}
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -230,7 +232,6 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
         <SpeedInsights />
