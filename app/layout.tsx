@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Henrique Antony | Web Developer Portfolio",
     description:
-      "Explore Henrique Antony's selected work, technical skills, and contact details for collaboration on performant web experiences.",
+      "Sites rápidos, estratégicos e focados em performance. Veja meu portfólio e entre em contato.",
     url: "https://www.henriqueantony.com.br/",
     siteName: "Henrique Antony Portfolio",
     locale: "pt_BR",
