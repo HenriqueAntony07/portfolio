@@ -57,7 +57,7 @@ export const About = () => {
        className="about-section relative mb-30 lg:mb-50 overflow-hidden"
     >
       {/* Background image */}
-    <div className="about-bg" aria-hidden />
+    <div/>
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div
           ref={cardRef}
