@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./Loader.css";
+import styles from "./Loader.module.css";
+
 
 export default function Loader() {
   const [visible, setVisible] = useState(true);
@@ -24,8 +25,8 @@ export default function Loader() {
   if (!visible) return null;
 
   return (
-    <div className="ha-loader">
-     <span className="ha-loader-text">Henrique Antony</span>
+    <div className={styles.loader}>
+        <span className={styles.text}>Henrique Antony</span>
     </div>
   );
 }
